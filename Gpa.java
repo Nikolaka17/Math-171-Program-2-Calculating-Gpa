@@ -7,8 +7,8 @@ public class Gpa{
 		
 		DecimalFormat formatter = new DecimalFormat("#.00");
 		
-		int totalHours;
-		int qualityPoints;
+		int totalHours = 0;
+		int qualityPoints = 0;
 		double gpa;
 		
 		int totalClasses = Integer.parseInt(JOptionPane.showInputDialog(null, "How many classes are you taking?", "Gpa calculator", JOptionPane.QUESTION_MESSAGE));
@@ -16,28 +16,28 @@ public class Gpa{
 		int i = 0;
 		while (i < totalClasses){
 			
-			String gradeTemp = (JOptionPane.showInputDialog(null, "What is your grade for class " + (i+1) + "?", "Gpa calculator", JOptionPane.QUESTION_MESSAGE)).toUpperCase();
-			while (!(gradeTemp == "A" || gradeTemp == "B" || gradeTemp == "C" || gradeTemp == "D" || gradeTemp == "F" || gradetemp == "W" || gradeTemp == "I")){
+			char gradeTemp = ((JOptionPane.showInputDialog(null, "What is your grade for class " + (i+1) + "?", "Gpa calculator", JOptionPane.QUESTION_MESSAGE)).toUpperCase()).charAt(0);
+			while (gradeTemp != 'A' && gradeTemp != 'B' && gradeTemp != 'C' && gradeTemp != 'D' && gradeTemp != 'F' && gradeTemp != 'W' && gradeTemp != 'I'){
 			
-				gradeTemp = (JOptionPane.showInputDialog(null, "Please enter a valid grade, grades are A, B, C, D, E, F, W, or I", "Gpa calculator", JOptionPane.QUESTION_MESSAGE)).toUpperCase();
+				gradeTemp = ((JOptionPane.showInputDialog(null, "Please enter a valid grade, grades are A, B, C, D, E, F, W, or I", "Gpa calculator", JOptionPane.QUESTION_MESSAGE)).toUpperCase()).charAt(0);
 			
 			}
 
 			int creditsTemp = Integer.parseInt(JOptionPane.showInputDialog(null, "How many credit hours is class " + (i+1) + "?", "Gpa calculator", JOptionPane.QUESTION_MESSAGE));
 
-			if (gradeTemp != "W" && gradeTemp != "I"){
+			if (gradeTemp != 'W' && gradeTemp != 'I'){
 				
-				if (gradeTemp == "F"){
+				if (gradeTemp == 'F'){
 					
 					qualityPoints += 0;
 				
 				}else{
 				
-					qualityPoints += (creditsTemp * ((int)('F' - gradetemp.charAt(0) - 1)));
+					qualityPoints += (creditsTemp * ((int)('F' - gradeTemp - 1)));
 				
 				}
 				
-				totalHours += creditHours;
+				totalHours += creditsTemp;
 			}
 
 			i++;
