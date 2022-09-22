@@ -9,9 +9,18 @@ public class Gpa{
 		
 		int totalHours = 0;
 		int qualityPoints = 0;
+		int totalClasses = 0;
 		double gpa;
 		
-		int totalClasses = Integer.parseInt(JOptionPane.showInputDialog(null, "How many classes are you taking?", "Gpa calculator", JOptionPane.QUESTION_MESSAGE));
+		boolean inputCheck = true;
+		while (inputCheck){
+			try{
+				totalClasses = Integer.parseInt(JOptionPane.showInputDialog(null, "How many classes are you taking?", "Gpa calculator", JOptionPane.QUESTION_MESSAGE));
+				inputCheck = false;
+			}catch (Exception e){
+				JOptionPane.showMessageDialog(null, "Please enter a valid number", "Gpa calculator", JOptionPane.ERROR_MESSAGE);
+			}
+		}
 		
 		int i = 0;
 		while (i < totalClasses){
@@ -22,8 +31,17 @@ public class Gpa{
 				gradeTemp = ((JOptionPane.showInputDialog(null, "Please enter a valid grade, grades are A, B, C, D, E, F, W, or I", "Gpa calculator", JOptionPane.QUESTION_MESSAGE)).toUpperCase()).charAt(0);
 			
 			}
-
-			int creditsTemp = Integer.parseInt(JOptionPane.showInputDialog(null, "How many credit hours is class " + (i+1) + "?", "Gpa calculator", JOptionPane.QUESTION_MESSAGE));
+			
+			int creditsTemp = 0;
+			inputCheck = true;
+			while (inputCheck){
+				try{
+					creditsTemp = Integer.parseInt(JOptionPane.showInputDialog(null, "How many credit hours is class " + (i+1) + "?", "Gpa calculator", JOptionPane.QUESTION_MESSAGE));
+					inputCheck = false;
+				}catch (Exception e){
+					JOptionPane.showMessageDialog(null, "Please enter a valid number", "Gpa calculator", JOptionPane.ERROR_MESSAGE);
+				}
+			}
 
 			if (gradeTemp != 'W' && gradeTemp != 'I'){
 				
@@ -43,7 +61,7 @@ public class Gpa{
 			i++;
 		}
 	
-	gpa = qualityPoints / totalHours;
+	gpa = (double) qualityPoints / totalHours;
 	
 	JOptionPane.showMessageDialog(null, "You're gpa is a " + formatter.format(gpa), "Gpa caluclator", JOptionPane.INFORMATION_MESSAGE);
 	
