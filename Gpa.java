@@ -9,18 +9,22 @@ public class Gpa{
 		
 		int totalHours = 0;
 		int qualityPoints = 0;
-		int totalClasses = 0;
 		double gpa;
+		int totalClasses = 0;
 		
-		boolean inputCheck = true;
-		while (inputCheck){
-			try{
-				totalClasses = Integer.parseInt(JOptionPane.showInputDialog(null, "How many classes are you taking?", "Gpa calculator", JOptionPane.QUESTION_MESSAGE));
-				inputCheck = false;
-			}catch (Exception e){
-				JOptionPane.showMessageDialog(null, "Please enter a valid number", "Gpa calculator", JOptionPane.ERROR_MESSAGE);
+		while (totalClasses == 0){
+			String tempClassNumber = JOptionPane.showInputDialog(null, "How many classes are you taking?", "Gpa calculator", JOptionPane.QUESTION_MESSAGE);
+			if (tempClassNumber == null){
+				System.exit(0);
+			}else{
+				try{
+					totalClasses = Integer.parseInt(tempClassNumber);
+				}catch (Exception e){
+					JOptionPane.showMessageDialog(null, "Please enter a valid number", "Gpa calculator", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
+		
 		
 		int i = 0;
 		while (i < totalClasses){
@@ -32,14 +36,17 @@ public class Gpa{
 			
 			}
 			
-			int creditsTemp = 0;
-			inputCheck = true;
-			while (inputCheck){
-				try{
-					creditsTemp = Integer.parseInt(JOptionPane.showInputDialog(null, "How many credit hours is class " + (i+1) + "?", "Gpa calculator", JOptionPane.QUESTION_MESSAGE));
-					inputCheck = false;
-				}catch (Exception e){
-					JOptionPane.showMessageDialog(null, "Please enter a valid number", "Gpa calculator", JOptionPane.ERROR_MESSAGE);
+			int creditHours = 0;
+			while (creditHours == 0){
+				String creditsTemp = JOptionPane.showInputDialog(null, "How many credit hours is class " + (i+1) + "?", "Gpa calculator", JOptionPane.QUESTION_MESSAGE);
+				if (creditsTemp == null){
+					System.exit(0);
+				}else{
+					try{
+						creditHours = Integer.parseInt(creditsTemp);
+					}catch (Exception e){
+						JOptionPane.showMessageDialog(null, "Please enter a valid number", "Gpa calculator", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 
@@ -51,11 +58,11 @@ public class Gpa{
 				
 				}else{
 				
-					qualityPoints += (creditsTemp * ((int)('F' - gradeTemp - 1)));
+					qualityPoints += (creditHours * ((int)('F' - gradeTemp - 1)));
 				
 				}
 				
-				totalHours += creditsTemp;
+				totalHours += creditHours;
 			}
 
 			i++;
