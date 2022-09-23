@@ -13,14 +13,17 @@ public class Gpa{
 		int totalClasses = 0;
 		
 		while (totalClasses == 0){
-			String tempClassNumber = JOptionPane.showInputDialog(null, "How many classes are you taking?", "Gpa calculator", JOptionPane.QUESTION_MESSAGE);
+			String tempClassNumber = JOptionPane.showInputDialog(null, "How" + 
+							" many classes are you taking?", "Gpa calculator", 
+							JOptionPane.QUESTION_MESSAGE);
 			if (tempClassNumber == null){
 				System.exit(0);
 			}else{
 				try{
 					totalClasses = Integer.parseInt(tempClassNumber);
 				}catch (Exception e){
-					JOptionPane.showMessageDialog(null, "Please enter a valid number", "Gpa calculator", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please enter a valid" +
+						" number", "Gpa calculator", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
@@ -29,36 +32,55 @@ public class Gpa{
 		int i = 0;
 		while (i < totalClasses){
 			
-			char gradeTemp = ((JOptionPane.showInputDialog(null, "What is your grade for class " + (i+1) + "?", "Gpa calculator", JOptionPane.QUESTION_MESSAGE)).toUpperCase()).charAt(0);
-			while (gradeTemp != 'A' && gradeTemp != 'B' && gradeTemp != 'C' && gradeTemp != 'D' && gradeTemp != 'F' && gradeTemp != 'W' && gradeTemp != 'I'){
-			
-				gradeTemp = ((JOptionPane.showInputDialog(null, "Please enter a valid grade, grades are A, B, C, D, E, F, W, or I", "Gpa calculator", JOptionPane.QUESTION_MESSAGE)).toUpperCase()).charAt(0);
+			String gradeTemp = (JOptionPane.showInputDialog(null, "What is your"+
+						" grade for class " + (i+1) + "?", "Gpa calculator", 
+						JOptionPane.QUESTION_MESSAGE)).toUpperCase();
+						
+			while (!gradeTemp.equals("A") && !gradeTemp.equals("B") && 
+				   !gradeTemp.equals("C") && !gradeTemp.equals("D") && 
+				   !gradeTemp.equals("F") && !gradeTemp.equals("W") && 
+				   !gradeTemp.equals("I")){
+				
+				gradeTemp = (JOptionPane.showInputDialog(null, "Please enter"+
+								" a valid grade\nGrades are A, B, C, D, E, F"+
+								", W, and I", "Gpa calculator", 
+								JOptionPane.QUESTION_MESSAGE)).toUpperCase();
+				
+				if (gradeTemp == null){
+					System.exit(0);
+				}
 			
 			}
+			char grade = gradeTemp.charAt(0);
 			
 			int creditHours = 0;
 			while (creditHours == 0){
-				String creditsTemp = JOptionPane.showInputDialog(null, "How many credit hours is class " + (i+1) + "?", "Gpa calculator", JOptionPane.QUESTION_MESSAGE);
+				String creditsTemp = JOptionPane.showInputDialog(null, "How "+
+						"many credit hours is class " + (i+1) + "?", "Gpa "+
+						"calculator", JOptionPane.QUESTION_MESSAGE);
 				if (creditsTemp == null){
 					System.exit(0);
 				}else{
 					try{
 						creditHours = Integer.parseInt(creditsTemp);
 					}catch (Exception e){
-						JOptionPane.showMessageDialog(null, "Please enter a valid number", "Gpa calculator", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Please enter a "+
+								"valid number", "Gpa calculator", 
+								JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
 
-			if (gradeTemp != 'W' && gradeTemp != 'I'){
+			if (grade != 'W' && grade != 'I'){
 				
-				if (gradeTemp == 'F'){
+				if (grade == 'F'){
 					
 					qualityPoints += 0;
 				
 				}else{
 				
-					qualityPoints += (creditHours * ((int)('F' - gradeTemp - 1)));
+					qualityPoints += (creditHours * (
+						(int)('F' - grade - 1)));
 				
 				}
 				
@@ -70,7 +92,9 @@ public class Gpa{
 	
 	gpa = (double) qualityPoints / totalHours;
 	
-	JOptionPane.showMessageDialog(null, "You're gpa is a " + formatter.format(gpa), "Gpa caluclator", JOptionPane.INFORMATION_MESSAGE);
+	JOptionPane.showMessageDialog(null, "Your gpa is a " + 
+			formatter.format(gpa), "Gpa caluclator", 
+			JOptionPane.INFORMATION_MESSAGE);
 	
 	}
 }
