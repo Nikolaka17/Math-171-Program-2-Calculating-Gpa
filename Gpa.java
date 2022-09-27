@@ -27,14 +27,15 @@ public class Gpa{
 				//Test if number is an integer and positive
 				try{
 					totalClasses = Integer.parseInt(tempClassNumber);
+					if (totalClasses < 1){
+						JOptionPane.showMessageDialog(null, "Please enter a "
+						+"valid number",
+						"Gpa calculator", JOptionPane.ERROR_MESSAGE);
+						totalClasses = 0;
+					}
 				}catch (Exception e){
 					JOptionPane.showMessageDialog(null, "Please enter a valid" +
 						" number", "Gpa calculator", JOptionPane.ERROR_MESSAGE);
-				}
-				if (totalClasses < 1){
-					JOptionPane.showMessageDialog(null, "Please enter a valid" +
-						" number", "Gpa calculator", JOptionPane.ERROR_MESSAGE);
-					totalClasses = 0;
 				}
 			}
 		}
