@@ -1,3 +1,10 @@
+//Nikolas Leslie
+//9/20/22
+//9/27/22
+//Collects grades and credit hours to calculate gpa
+
+
+
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 
